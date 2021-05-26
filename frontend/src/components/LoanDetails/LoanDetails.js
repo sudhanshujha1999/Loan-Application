@@ -1,9 +1,9 @@
 import React from 'react'
-import { Form } from 'react-bootstrap'
+import { Form, Row, Col, Button } from 'react-bootstrap'
 
 //  LoanDetails component to display details received from API
 const LoanDetails = (props) => {
-  const ApplyHandler = () => {
+  const applyHandler = () => {
     let loansList = []
     if (localStorage.getItem('applied-loans')) {
       loansList = JSON.parse(localStorage.getItem('applied-loans'))
@@ -26,49 +26,6 @@ const LoanDetails = (props) => {
   return (
     <div className='m-md-5'>
       <div className='max-width-form m-auto'>
-        <h4>Your Details</h4>
-        <Form style={{ padding: '20px' }}>
-          <Form.Group controlId='name'>
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type='name'
-              placeholder='Enter name'
-              value={props.name}
-              onChange={props.changeName}
-              disabled
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId='email'>
-            <Form.Label>Email Address</Form.Label>
-            <Form.Control
-              type='email'
-              placeholder='Enter email'
-              value={props.email}
-              onChange={props.changeEmail}
-              disabled
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId='phoneNumber'>
-            <Form.Label>Phone Number</Form.Label>
-            <Form.Control
-              type='number'
-              placeholder='Enter Phone Number'
-              value={props.phoneNumber}
-              onChange={props.changeNumber}
-              disabled
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId='address'>
-            <Form.Label>Address</Form.Label>
-            <Form.Control
-              type='address'
-              placeholder='Enter your Address'
-              value={props.address}
-              onChange={props.changeAddress}
-              disabled
-            ></Form.Control>
-          </Form.Group>
-        </Form>
         <h4>Loan Details</h4>
         {/* card-body */}
         <div className='card-body'>
@@ -128,26 +85,67 @@ const LoanDetails = (props) => {
               </div>
             </div>
           </div>
-          {/* Button to return to LoanAmountForm */}
-          <div style={{ marginTop: '20px' }} className='row'>
-            <div className='text-center col-md-6 col-xs-12 mb-3'>
-              <button
-                className='btn btn-primary pl-4 pr-4'
-                onClick={props.displayForm}
-              >
-                <h5 className='font-weight-normal m-0'>Return To Form</h5>
-              </button>
-            </div>
-            <div className='text-center col-md-6 col-xs-12 mb-3'>
-              <button
-                className='btn btn-primary pl-4 pr-4'
-                onClick={ApplyHandler}
-              >
-                <h5 className='font-weight-normal m-0'>Apply Now</h5>
-              </button>
-            </div>
-          </div>
         </div>
+        <h4>Your Details</h4>
+        <Form style={{ padding: '20px' }}>
+          <Form.Group controlId='name'>
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              type='name'
+              placeholder='Enter name'
+              value={props.name}
+              onChange={props.changeName}
+              disabled
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group controlId='email'>
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              type='email'
+              placeholder='Enter email'
+              value={props.email}
+              onChange={props.changeEmail}
+              disabled
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group controlId='phoneNumber'>
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              type='number'
+              placeholder='Enter Phone Number'
+              value={props.phoneNumber}
+              onChange={props.changeNumber}
+              disabled
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group controlId='address'>
+            <Form.Label>Address</Form.Label>
+            <Form.Control
+              type='address'
+              placeholder='Enter your Address'
+              value={props.address}
+              onChange={props.changeAddress}
+              disabled
+            ></Form.Control>
+          </Form.Group>
+          {/* Button to return to LoanAmountForm */}
+          <Row>
+            <Col className='text-center' md={7}>
+              <Button
+                onCLick={props.displayForm}
+                type='submit'
+                variant='primary'
+              >
+                Fill New Form
+              </Button>
+            </Col>
+            <Col className='text-center' md={5}>
+              <Button onClick={applyHandler} type='submit' variant='primary'>
+                Apply
+              </Button>
+            </Col>
+          </Row>
+        </Form>
       </div>
     </div>
   )

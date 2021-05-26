@@ -137,9 +137,11 @@ const LoanAmountForm = (props) => {
               required
             ></Form.Control>
           </Form.Group>
-          <Button type='submit' variant='primary'>
-            SUBMIT
-          </Button>
+          <div className='text-center'>
+            <Button type='submit' variant='primary'>
+              SUBMIT
+            </Button>
+          </div>
         </Form>
       </div>
     </div>
