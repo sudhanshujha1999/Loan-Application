@@ -11,6 +11,9 @@ import Axios from 'axios'
 //  Root component - Loan
 
 const Loan = (props) => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   //check if user is logged in
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -18,6 +21,10 @@ const Loan = (props) => {
   useEffect(() => {
     if (!userInfo) {
       props.history.push('/login')
+    } else {
+      setName(userInfo.name)
+      setEmail(userInfo.email)
+      setPhoneNumber(userInfo.phoneNumber)
     }
   }, [props.history, userInfo])
 
@@ -31,9 +38,6 @@ const Loan = (props) => {
   const [cacheAmountList, setCacheAmountList] = useState(
     JSON.parse(localStorage.getItem('loan-amount-cache'))
   )
-  const [name, setName] = useState(userInfo.name)
-  const [email, setEmail] = useState(userInfo.email)
-  const [phoneNumber, setPhoneNumber] = useState(userInfo.phoneNumber)
   const [address, setAddress] = useState('')
   const [success, setSuccess] = useState(false)
   //  Flags
